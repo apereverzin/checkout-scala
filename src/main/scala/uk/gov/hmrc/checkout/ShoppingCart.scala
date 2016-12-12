@@ -10,6 +10,13 @@ object ShoppingCart {
 
   def getTotalPrice(shoppingCart: ShoppingCart): Double = {
     val counts = shoppingCart.items.groupBy(identity).mapValues(_.size)
-    counts.keys.map(key => prices.get(key).get * counts.get(key).get).sum / 100.0
+    counts.keys.map(key => prices.get(key).get * applyOffers(key, counts.get(key).get)).sum / 100.0
+  }
+
+  def applyOffers(item: String, quantity: Int) = {
+    item match {
+      case "Apple" => quantity / 2 + quantity % 2
+      case "Orange" => quantity / 3 * 2 + quantity % 3
+    }
   }
 }

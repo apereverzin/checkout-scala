@@ -13,20 +13,40 @@ class ShoppingCartTest extends FlatSpec with Matchers {
     testTotalPrice(0.6, Seq(Apple))
   }
 
+  "Checkout" should "calculate total price of a shopping cart with 2 apples" in {
+    testTotalPrice(0.6, Seq(Apple, Apple))
+  }
+
+  "Checkout" should "calculate total price of a shopping cart with 3 apples" in {
+    testTotalPrice(1.2, Seq(Apple, Apple, Apple))
+  }
+
   "Checkout" should "calculate total price of a shopping cart with 4 apples" in {
-    testTotalPrice(2.4, Seq(Apple, Apple, Apple, Apple))
+    testTotalPrice(1.2, Seq(Apple, Apple, Apple, Apple))
   }
 
   "Checkout" should "calculate total price of a shopping cart with 1 orange" in {
     testTotalPrice(0.25, Seq(Orange))
   }
 
+  "Checkout" should "calculate total price of a shopping cart with 2 oranges" in {
+    testTotalPrice(0.5, Seq(Orange, Orange))
+  }
+
+  "Checkout" should "calculate total price of a shopping cart with 3 oranges" in {
+    testTotalPrice(0.5, Seq(Orange, Orange, Orange))
+  }
+
   "Checkout" should "calculate total price of a shopping cart with 4 oranges" in {
-    testTotalPrice(1.0, Seq(Orange, Orange, Orange, Orange))
+    testTotalPrice(0.75, Seq(Orange, Orange, Orange, Orange))
   }
 
   "Checkout" should "calculate total price of a shopping cart with 3 apples and 1 orange" in {
-    testTotalPrice(2.05, Seq(Apple, Apple, Orange, Apple))
+    testTotalPrice(1.45, Seq(Apple, Apple, Orange, Apple))
+  }
+
+  "Checkout" should "calculate total price of a shopping cart with 3 apples and 5 oranges" in {
+    testTotalPrice(2.2, Seq(Apple, Apple, Orange, Orange, Apple, Orange, Orange, Orange))
   }
 
   def testTotalPrice(expectedTotalPrice: Double, items: Seq[String]) = {
